@@ -6,22 +6,27 @@ import 'package:golgi_chan/constants/color.dart';
 import 'package:golgi_chan/constants/sizes.dart';
 import '../menu/menu_higher.dart';
 
-class MenuButton extends StatelessWidget{
+final menuBarButtonProvider = StateProvider((ref) => -1);
+
+class MenuButton extends ConsumerWidget{
   final Menus menu;
-  final WidgetRef ref;
   final Function? onTap;
 
-  const MenuButton({super.key, required this.menu, required this.ref, this.onTap,});
+  const MenuButton({super.key, required this.menu, this.onTap,});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: (){
-        onTap ?? showMenuDialog(context: context, menu: menu, ref: ref);
-      },
+      onTap: onTap == null
+          ? (){
+            ref.read(menuBarButtonProvider.notifier).state = menu.index;
+            showMenuDialog(context: context, menu: menu, ref: ref);}
+          : onTap!(),
       child: Container(
-        color: ConstantsColors.commonCreamShadow,
+        color: ref.watch(menuBarButtonProvider) == menu.index
+            ? ConstantsColors.commonCreamShadow
+            : ConstantsColors.commonCream,
         padding: const EdgeInsets.symmetric(horizontal: 5),
         height: ConstantsSizes.menuBarHeight,
         width: ConstantsSizes.menuButtonWidth,

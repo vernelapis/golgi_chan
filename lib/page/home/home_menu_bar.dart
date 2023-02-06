@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:golgi_chan/constants/color.dart';
-import '../../Widgets/Common/button_menu.dart';
-import '../../gen/assets.gen.dart';
+import 'package:golgi_chan/constants/sizes.dart';
+import '../../Widgets/Common/button_menu_bar.dart';
+import '../../Widgets/menu/menu_higher.dart';
 
 class HomeMenuBar extends StatelessWidget{
   final WidgetRef ref;
@@ -12,7 +13,7 @@ class HomeMenuBar extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: ConstantsSizes.menuBarHeight,
       decoration: const BoxDecoration(
         color:  ConstantsColors.commonCream,
         border: Border(
@@ -23,10 +24,11 @@ class HomeMenuBar extends StatelessWidget{
       ),
       child: Row(
         children: [
-          MenuButton(text: "ファイル", image: Assets.image.file.image(fit: BoxFit.fill), ref: ref, onTap: (){}),
-          MenuButton(text: "設定", image: Assets.image.setting.image(fit: BoxFit.fill), ref: ref, onTap: (){}),
-          MenuButton(text: "戻す", image: Assets.image.back.image(fit: BoxFit.fill), ref: ref, onTap: (){}),
-          MenuButton(text: "ヘルプ", image: Assets.image.help.image(fit: BoxFit.fill), ref: ref, onTap: (){}),
+          const MenuButton(menu: Menus.file),
+          const MenuButton(menu: Menus.setting),
+          MenuButton(menu: Menus.back, onTap: () {
+          }),
+          const MenuButton(menu: Menus.help),
         ],
       ),
     );
