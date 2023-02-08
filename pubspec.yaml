@@ -45,6 +45,7 @@ dependencies:
       ref: 6c66ad2
   build_runner:
   flutter_gen_runner:
+  flython: ^0.2.0
 
 
 dev_dependencies:
