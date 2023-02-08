@@ -6,4 +6,6 @@ class ConstantsColors {
   static const Color commonCream = Color.fromRGBO(251, 245, 208, 1);
   static const Color commonCreamShadow = Color.fromRGBO(221, 215, 178, 1);
   static const Color commonBaseColor = Color.fromRGBO(108, 116, 134, 1);
+
+  static const Color selectToolColor = Color.fromRGBO(0, 129, 201, 1);
 }

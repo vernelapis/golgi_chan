@@ -2,35 +2,65 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:golgi_chan/constants/color.dart';
+import 'package:golgi_chan/enums/tools.dart';
 
-class ToolButton extends StatelessWidget{
-  final String text;
-  final Image image;
-  final WidgetRef ref;
+class ToolButton extends ConsumerWidget{
+  final Tools tool;
   final Function onTap;
 
-  const ToolButton({super.key, required this.text, required this.image, required this.ref, required this.onTap,});
+  const ToolButton({super.key, required this.tool, required this.onTap,});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: onTap(),
+      onTap: (){
+        (ref.read(toolPalletProvider) == tool)
+            ? ref.read(toolPalletProvider.notifier).state = Tools.none
+            : ref.read(toolPalletProvider.notifier).state = tool;
+        onTap();
+      },
       child: Container(
-        height: 35,
+        height: 37,
         width: 150,
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.black)),
+        decoration: (ref.watch(toolPalletProvider) == tool)
+            ? _selected()
+            : _notSelected(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(width: 5,),
-            SizedBox(height: 30,width: 30,child: image,),
+            SizedBox(height: 30,width: 30,child: tool.image,),
             const SizedBox(width: 10,),
-            Text(text,),
+            Text(tool.text!,textAlign: TextAlign.start,),
           ],
         ),
       ),
     );
   }
+
+  BoxDecoration _selected(){
+    return const BoxDecoration(
+      color: ConstantsColors.selectToolColor,
+      border: Border(
+        top: BorderSide(
+          color: Colors.black,
+        ),
+        left: BorderSide(
+          color: Colors.black,
+        ),
+        bottom: BorderSide(
+          color: Colors.black,
+        ),
+      ),
+    );
+  }
+
+  BoxDecoration _notSelected(){
+    return BoxDecoration(
+      color: ConstantsColors.commonBaseColor,
+      border: Border.all(color: Colors.black),
+    );
+  }
+
 }
