@@ -1,38 +1,44 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:golgi_chan/Widgets/Common/dialog_menu.dart';
 import 'package:golgi_chan/constants/color.dart';
 import 'package:golgi_chan/constants/sizes.dart';
-import '../menu/menu_higher.dart';
+import '../../enums/menu_bar.dart';
 
-class MenuButton extends StatelessWidget{
-  final Menus menu;
-  final WidgetRef ref;
-  final Function? onTap;
+class MenuButton extends HookWidget{
+  final String text;
+  final Function onTap;
+  final String? shortCut;
 
-  const MenuButton({super.key, required this.menu, required this.ref, this.onTap,});
+  const MenuButton({super.key, required this.text, required this.onTap, this.shortCut});
 
   @override
   Widget build(BuildContext context) {
+    final hover = useState(false);
+
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: (){
-        onTap ?? showMenuDialog(context: context, menu: menu, ref: ref);
+        Navigator.pop(context);
+        onTap();
       },
-      child: Container(
-        color: ConstantsColors.commonCreamShadow,
-        padding: const EdgeInsets.symmetric(horizontal: 5),
-        height: ConstantsSizes.menuBarHeight,
-        width: ConstantsSizes.menuButtonWidth,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 20,width: 20,child: menu.image,),
-            const SizedBox(width: 10,),
-            Text(menu.text,),
-          ],
+      child: MouseRegion(
+        onEnter: (_) => hover.value = true,
+        onExit: (_) => hover.value = false,
+        child: Container(
+          alignment: AlignmentDirectional.center,
+          color: hover.value ? ConstantsColors.commonCreamShadow : ConstantsColors.commonCream,
+          margin: const EdgeInsets.only(top: 2, bottom: 1, left: 5, right: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 2),
+          height: 30,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(text),
+              Text(shortCut ?? "")
+            ],)
         ),
       ),
     );

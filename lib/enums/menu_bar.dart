@@ -1,6 +1,6 @@
 import 'package:flutter/src/widgets/image.dart';
 
-import '../../gen/assets.gen.dart';
+import '../gen/assets.gen.dart';
 
 enum Menus{
   file(number: 0,text: "ファイル"),

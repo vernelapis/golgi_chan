@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:golgi_chan/constants/color.dart';
 import 'package:golgi_chan/constants/sizes.dart';
 import '../../Widgets/Common/button_menu_bar.dart';
-import '../../Widgets/menu/menu_higher.dart';
+import '../../enums/menu_bar.dart';
 
 class HomeMenuBar extends StatelessWidget{
   final WidgetRef ref;
@@ -24,11 +24,11 @@ class HomeMenuBar extends StatelessWidget{
       ),
       child: Row(
         children: [
-          const MenuButton(menu: Menus.file),
-          const MenuButton(menu: Menus.setting),
-          MenuButton(menu: Menus.back, onTap: () {
+          const MenuBarButton(menu: Menus.file),
+          const MenuBarButton(menu: Menus.setting),
+          MenuBarButton(menu: Menus.back, onTap: () {
           }),
-          const MenuButton(menu: Menus.help),
+          const MenuBarButton(menu: Menus.help),
         ],
       ),
     );

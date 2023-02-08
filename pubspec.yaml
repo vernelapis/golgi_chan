@@ -45,6 +45,7 @@ dependencies:
       ref: 6c66ad2
   build_runner:
   flutter_gen_runner:
+  flutter_hooks: ^0.18.5+1
 
 
 dev_dependencies:

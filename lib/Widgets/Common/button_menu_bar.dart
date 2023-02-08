@@ -4,15 +4,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:golgi_chan/Widgets/Common/dialog_menu.dart';
 import 'package:golgi_chan/constants/color.dart';
 import 'package:golgi_chan/constants/sizes.dart';
-import '../menu/menu_higher.dart';
+import '../../enums/menu_bar.dart';
 
 final menuBarButtonProvider = StateProvider((ref) => -1);
 
-class MenuButton extends ConsumerWidget{
+class MenuBarButton extends ConsumerWidget{
   final Menus menu;
   final Function? onTap;
 
-  const MenuButton({super.key, required this.menu, this.onTap,});
+  const MenuBarButton({super.key, required this.menu, this.onTap,});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
