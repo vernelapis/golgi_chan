@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:golgi_chan/Widgets/Common/button_menu.dart';
 
-Widget settingMenuDialog(){
+Widget settingMenuDialog(BuildContext context){
   return Column(
     mainAxisSize: MainAxisSize.min,
     children: [

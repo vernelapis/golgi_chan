@@ -1,20 +1,10 @@
-
-
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:golgi_chan/dataType/image_data_set.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tabbed_view/tabbed_view.dart';
 
-final imageTabProvider = StateProvider((ref) => [
-  TabData(text: "Tab 1", closable: false),
-  TabData(text: "Tab 2"),
-  TabData(text: "Tab 3",
+final preTabNumProvider = StateProvider((ref) => 0);
+final preImageTabProvider = StateProvider<List<ImageTab>>((ref) => []);
 
-  ),
-  TabData(text: "TAb4"),
-]);
-
-  // ImageDataSet(
-  //     image: ,
-  //     arrowSettings: arrowSettings,
-  //     graphSettings: graphSettings)]);
-
+class ImageTab extends TabData {
+  ImageTab({required super.text, required super.content, super.closable}):super(keepAlive: true);
+}
