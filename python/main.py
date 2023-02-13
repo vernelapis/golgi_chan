@@ -1,6 +1,7 @@
 import argparse
 import json
 import sys
+# import cv2
 
 # import os
 # import copy
@@ -10,8 +11,6 @@ import sys
 # import tkinter.filedialog
 # import tkinter.messagebox
 # import tkinter.colorchooser
-# # import sys
-# import cv2
 # import pandas as pd
 # import numpy as np
 # import math
@@ -75,8 +74,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--uuid")
     args = parser.parse_args()
-    stream_start = "`S`T`R`E`A`M`{args.uuid}`S`T`A`R`T`"
-    stream_end = "`S`T`R`E`A`M`{args.uuid}`E`N`D`"
+    stream_start = "`S`T`R`E`A`M`{0}`S`T`A`R`T`".format(args.uuid)
+    stream_end = "`S`T`R`E`A`M`{0}`E`N`D`".format(args.uuid)
     while True:
         cmd = input()
         cmd = json.loads(cmd)

@@ -12,9 +12,7 @@ class ReadImage extends Flython{
     var command = {
       "cmd": systemVersion,
     };
-    var returned = await runCommand(command);
-    debugPrint("returned!");
-    return returned["sys.version"];
+    return await runCommand(command);
   }
 
   Future<dynamic> imageRead() async {
