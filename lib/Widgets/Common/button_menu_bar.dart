@@ -27,7 +27,7 @@ class MenuBarButton extends HookConsumerWidget{
             ? (){
               ref.read(menuBarButtonProvider.notifier).state = menu.index;
               showMenuDialog(context: context, menu: menu, ref: ref);}
-            : onTap!(),
+            : ()async{onTap!();},
         child: Container(
           color: (ref.watch(menuBarButtonProvider) == menu.index || hover.value)
               ? ConstantsColors.commonCreamShadow
