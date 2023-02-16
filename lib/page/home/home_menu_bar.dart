@@ -32,7 +32,7 @@ class HomeMenuBar extends StatelessWidget{
           const MenuBarButton(menu: Menus.file),
           const MenuBarButton(menu: Menus.setting),
           MenuBarButton(menu: Menus.back, onTap: () async{
-            await _futureFlython();
+            // await _futureFlython();
           }),
           const MenuBarButton(menu: Menus.help),
         ],
@@ -40,23 +40,23 @@ class HomeMenuBar extends StatelessWidget{
     );
   }
 
-  Future<void> _futureFlython() async {
-    debugPrint("flython1");
-    final flython = ReadImage();
-    debugPrint("flython2");
-    await flython.initialize("python", "./python/main.py", true);
-    debugPrint("flython3");
-    var systemVersion = await flython.sysVersionPrint();
-    debugPrint("flython4");
-    ref.read(imageTabProvider.notifier).state.add(TabData(text: systemVersion.toString()),);
-    debugPrint("flython5");
-    flython.finalize();
-  }
-
-  Future<void> _future2() async {
-    var systemVersion = await ref.watch(flythonInstanceProvider).sysVersionPrint();
-    debugPrint("flythonNext!$systemVersion");
-    ref.read(imageTabProvider.notifier).state.add(TabData(text: systemVersion.toString()),);
-  }
+  // Future<void> _futureFlython() async {
+  //   debugPrint("flython1");
+  //   final flython = ReadImage();
+  //   debugPrint("flython2");
+  //   await flython.initialize("python", "./python/main.py", true);
+  //   debugPrint("flython3");
+  //   var systemVersion = await flython.sysVersionPrint();
+  //   debugPrint("flython4");
+  //   ref.read(imageTabProvider.notifier).state.add(TabData(text: systemVersion.toString()),);
+  //   debugPrint("flython5");
+  //   flython.finalize();
+  // }
+  //
+  // Future<void> _future2() async {
+  //   var systemVersion = await ref.watch(flythonInstanceProvider).sysVersionPrint();
+  //   debugPrint("flythonNext!$systemVersion");
+  //   ref.read(imageTabProvider.notifier).state.add(TabData(text: systemVersion.toString()),);
+  // }
 
 }

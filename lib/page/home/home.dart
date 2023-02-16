@@ -39,7 +39,7 @@ class MyHomePage extends ConsumerWidget{
         child: Row(
           children: [
             ImageTabView(),
-            // _sidePallet()
+            _sidePallet()
           ],),
       ),
     );
