@@ -47,6 +47,7 @@ dependencies:
   build_runner:
   flutter_gen_runner:
   file_picker: ^5.2.5
+  flython: ^0.2.0
 
 
 

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:golgi_chan/constants/color.dart';
+import 'package:golgi_chan/flython/flython.dart';
 import 'package:golgi_chan/page/home/home_navigation_pallet.dart';
 import 'package:golgi_chan/page/home/home_tool_pallet.dart';
 import 'package:golgi_chan/page/main_image/image_tab_view.dart';
@@ -15,6 +16,13 @@ class MyHomePage extends ConsumerWidget{
 
   @override
   Widget build(BuildContext context, WidgetRef ref){
+
+    // ref.watch(flythonInstanceProvider).initialize("python", "./python/main.py", true);
+
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   ref.watch(flythonInstanceProvider).finalize();
+    // });
+
     return Scaffold(
       body: Column(
         children: [
@@ -31,7 +39,7 @@ class MyHomePage extends ConsumerWidget{
         child: Row(
           children: [
             ImageTabView(),
-            _sidePallet()
+            // _sidePallet()
           ],),
       ),
     );
