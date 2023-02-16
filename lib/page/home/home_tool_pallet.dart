@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:golgi_chan/Widgets/Common/button_tool.dart';
+import 'package:golgi_chan/Widgets/tool/cropTool.dart';
+import 'package:golgi_chan/Widgets/tool/eraser.dart';
+import 'package:golgi_chan/constants/color.dart';
 
+import '../../enums/tools.dart';
 import '../../gen/assets.gen.dart';
 
 class HomeToolPallet extends ConsumerWidget {
@@ -22,26 +26,43 @@ class HomeToolPallet extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ToolButton(
-                    text: "消しゴム",
-                    image: Assets.image.eraser.image(fit: BoxFit.fill),
-                    ref: ref,
-                    onTap: (){}),
+                  tool: Tools.eraser, 
+                  onTap: (){}, ),
                 ToolButton(
-                    text: "エリア切り取り",
-                    image: Assets.image.cropTool.image(fit: BoxFit.fill),
-                    ref: ref,
-                    onTap: (){}),
+                  tool: Tools.cropTool,
+                  onTap: (){}, ),
               ],),
           ),
-          const SizedBox(width: 5,),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),),
+              decoration: const BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    color: Colors.black,
+                  ),
+                  right: BorderSide(
+                    color: Colors.black,
+                  ),
+                  bottom: BorderSide(
+                    color: Colors.black,
+                  ),
+                )
+              ),
+              child: _switchChild(ref.watch(toolPalletProvider)),
             ),
           ),
       ],),
     );
   }
 
+  Widget _switchChild(Tools tool){
+    switch (tool) {
+      case Tools.none:
+        return const Center(child: Text("Select tool !"),);
+      case Tools.eraser:
+        return EraserToolWidget();
+      case Tools.cropTool:
+        return CropToolWidget();
+    }
+  }
 }
