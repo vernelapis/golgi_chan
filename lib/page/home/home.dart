@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:golgi_chan/constants/color.dart';
 import 'package:golgi_chan/flython/flython.dart';
 import 'package:golgi_chan/page/home/home_navigation_pallet.dart';
 import 'package:golgi_chan/page/home/home_tool_pallet.dart';
 import 'package:golgi_chan/page/main_image/image_tab_view.dart';
+import 'package:menu_bar/menu_bar.dart';
+import '../../Widgets/menu/menu_bar_buttons.dart';
 import 'home_arrow_pallet.dart';
 import 'home_information_pallet.dart';
-import 'home_menu_bar.dart';
 
 
 class MyHomePage extends ConsumerWidget{
@@ -16,32 +19,48 @@ class MyHomePage extends ConsumerWidget{
 
   @override
   Widget build(BuildContext context, WidgetRef ref){
-
     // ref.watch(flythonInstanceProvider).initialize("python", "./python/main.py", true);
 
     // WidgetsBinding.instance.addPostFrameCallback((_) {
     //   ref.watch(flythonInstanceProvider).finalize();
     // });
-
-    return Scaffold(
-      body: Column(
-        children: [
-          HomeMenuBar(ref: ref),
-          _mainArea(),
-        ],),
+    return MaterialApp(
+      theme: ThemeData(
+        menuTheme: const MenuThemeData(
+          style: MenuStyle(
+            padding:
+            MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 16.0)),),),),
+      home: MenuBarWidget(
+        barButtons: menuBarButtons(ref),
+        barStyle: const MenuStyle(
+          padding: MaterialStatePropertyAll(EdgeInsets.zero),
+          backgroundColor: MaterialStatePropertyAll(Color(0xFF2b2b2b)),
+          maximumSize: MaterialStatePropertyAll(Size(double.infinity, 28.0)),
+        ),
+        barButtonStyle: const ButtonStyle(
+          padding:
+            MaterialStatePropertyAll(EdgeInsets.symmetric(horizontal: 6.0)),
+          minimumSize: MaterialStatePropertyAll(Size(0.0, 32.0)),
+        ),
+        menuButtonStyle: const ButtonStyle(
+          minimumSize: MaterialStatePropertyAll(Size.fromHeight(36.0)),
+          padding: MaterialStatePropertyAll(
+            EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0)),
+        ),
+        enabled: true,
+        child:_mainArea()
+      )
     );
   }
 
   Widget _mainArea(){
-    return Expanded(
-      child: Container(
-        color: ConstantsColors.commonBaseColor,
-        child: Row(
-          children: [
-            ImageTabView(),
-            _sidePallet()
-          ],),
-      ),
+    return Container(
+      color: ConstantsColors.commonBaseColor,
+      child: Row(
+        children: [
+          ImageTabView(),
+          _sidePallet()
+        ],),
     );
   }
 

@@ -46,6 +46,7 @@ dependencies:
       ref: 6c66ad2
   build_runner:
   flutter_gen_runner:
+  menu_bar: ^0.5.3
   file_picker: ^5.2.5
   flython: ^0.2.0
 
