@@ -48,7 +48,7 @@ class MyHomePage extends ConsumerWidget{
             EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0)),
         ),
         enabled: true,
-        child:_mainArea()
+        child:Material(child: _mainArea())
       )
     );
   }

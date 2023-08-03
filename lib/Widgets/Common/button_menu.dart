@@ -5,7 +5,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:golgi_chan/Widgets/Common/dialog_menu.dart';
 import 'package:golgi_chan/constants/color.dart';
 import 'package:golgi_chan/constants/sizes.dart';
-import '../../enums/menu_bar.dart';
 
 class MenuButton extends HookWidget{
   final String text;
